@@ -1,73 +1,60 @@
-﻿# AI Research
+﻿# AI research — notes and diary
 
-Welcome to my AI diary ^_^. Here I will be documenting interesting research papers, articles, and resources that I come across in the field of artificial intelligence, particularly focusing on large language models (LLMs) and transformers.
+This repository is a running research diary: notes, experiment notebooks, short essays, and small utilities I use while exploring machine learning, alignment, and large models. The contents are curated and maintained personally — I am not accepting outside contributions.
 
-## What are transformers?
+Contents are pragmatic and evidence-oriented: reproducible snippets, pointers to papers, and working notebooks. See the top-level folders for organized material (for example `LangChain/`, `Finetuning/`, `Embeddings/`).
 
-* `Transformers` are a type of neural network architecture that allow for parallelization across the sequence. This means that the network can process all of the tokens in the sequence at the same time, rather than having to process them sequentially. This is a huge advantage over RNNs, which must process tokens sequentially.
-* It was introduced through the paper [Attention Is All You Need](https://arxiv.org/abs/1706.03762) in 2017 which can be found in the Proceedings of the 31st International Conference on Neural Information Processing Systems (NIPS 2017). by Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser and Illia Polosukhin
-* Below is a diagram of the Transformer architecture:
-![Transformer Architecture](
-https://machinelearningmastery.com/wp-content/uploads/2021/08/attention_research_1.png
-)
-* Sebastian Ratchka sums it well in [Sebastian Ratchka's LinkedIn post](https://www.linkedin.com/posts/sebastianraschka_ai-llm-transformers-activity-7074387165543092224-tlX-?utm_source=share&utm_medium=member_desktop)
+## Intent and signal
 
-****************
+* Purpose: a personal research diary and reference index.
+* Tone: technical and critical where appropriate; concise where possible.
+* Availability: curated privately; do not submit pull requests or expect formal review.
 
-****************
+## Short technical history (n-grams → Transformers)
 
-Before the transformer architecture, RNNs and LSTMs were the go-to architectures for sequence modeling tasks. However, they struggled with long-range dependencies due to their sequential nature. Transformers, on the other hand, utilize self-attention mechanisms that allow them to weigh the importance of different tokens in a sequence, regardless of their position. This enables them to capture long-range dependencies more effectively.
-N-gram models existed before transformers as well, but they were limited in their ability to capture long-range dependencies and context. Transformers, with their self-attention mechanisms, have largely supplanted n-gram models in many applications due to their superior performance.
-Look up the [Annotated Transformer](http://nlp.seas.harvard.edu/2018/04/03/attention.html) for a step-by-step implementation of the transformer model in PyTorch.
-Check out [The Illustrated Transformer](http://jalammar.github.io/illustrated-transformer/) by Jay Alammar for a visual and intuitive explanation of how transformers work.
-If you want to dive deeper into the mathematics and mechanics of transformers, consider reading the [Transformer paper](https://arxiv.org/abs/1706.03762) itself.
-****************
+This is a compact timeline to explain why the 2017 Transformer paper is a structural turning point.
 
-Fave paper so far:
+* N-gram and statistical language models — count-based approaches with explicit smoothing and transparent failure modes; limited to short contexts.
+* Neural sequence models (RNNs, LSTMs) — learned representations and improved generalization, but sequential training and inference limited long-range modeling in practice.
+* Attention and the Transformer (2017) — Vaswani et al.'s self-attention enabled direct token-to-token interactions, large-scale parallelism, and a flexible substrate for language and multimodal models.
 
-## [Are Emergent Abilities of Large Language Models a Mirage?](https://arxiv.org/abs/2304.15004)
+Key influences: Geoffrey Hinton, Yann LeCun, Yoshua Bengio and others established principles (distributed representations, optimization approaches, and engineering practices) that made large-scale, stable training possible.
 
-* This paper presents a compelling case that purported emergent abilities in LLMs are highly dependent on the metrics employed, challenging the community to reassess the foundational understanding of how LLMs evolve with scale.
+## Current focus areas
 
-****************
-First favourites in research*****************
+* Alignment and safety: failure modes, reward misspecification, and methods for robust oversight.
+* Hallucinations and grounding: when models produce confident-but-wrong outputs and how to anchor outputs to verifiable context.
+* Interpretability: mechanistic investigations, circuit-level structure, and representation analysis.
+* Scaling and capability analysis: tracking behavior changes with scale while avoiding simple emergent narratives.
+* World models: latent simulators and model-based approaches that support planning and long-horizon reasoning.
 
-1. [Exploiting Novel GPT-4 APIs](https://arxiv.org/abs/2312.14302)
+## Forecast: world models as a core axis
 
-2. [Orca: Progressive Learning from Complex Explanation Traces of GPT-4](https://arxiv.org/pdf/2306.02707)
+I treat world models — learned compact simulators or latent dynamics — as a central research hypothesis. Such models offer a route to richer internal representations, planning, and counterfactual reasoning. This hypothesis guides the experiments I prioritise and the literature I follow.
 
-* _Can large language models (LLMs) train themselves?_
-Credits: [Cameron Wolfe](https://cameronrwolfe.substack.com/p/orca-properly-imitating-proprietary) found through this [twitter thread](https://twitter.com/cwolferesearch/status/1673398297304911872)
+## Key AI safety issues I track
 
-****************
+1. Specification and reward design: mis-specified objectives lead to undesirable optimization.
+2. Interpretability gaps: limited mappings from internal state to behavior impede safe intervention.
+3. Robustness and distributional shift: silent failure under new conditions is a systemic risk.
+4. Capability overhang and misuse: rapid capability improvements can outpace governance and understanding.
+5. Scalable oversight: human feedback, automated evaluation, and robust evaluation harnesses require research effort.
 
-### Research focus
+## Selected reading and pointers
 
-1) Alignment
+* Vaswani et al., "Attention Is All You Need" (2017) — the Transformer architecture.
+* Work on world models (Ha & Schmidhuber) and followups in model-based representation learning.
+* Recent surveys and papers on hallucinations, scaling laws, and mechanistic interpretability (see folders for local copies and notes).
 
--[A closer look at RLHF](https://twitter.com/cwolferesearch/status/1724486576992886985)
+For curated public material, see my website: [ashioyajotham.github.io](https://ashioyajotham.github.io/) (research, projects, and blog links are there).
 
-2)"Hallucination" problem
+## How I use this repository
 
-  -[Lately I have been thinking about the intersection between imagination and "hallucinations" in humans and machines respectively](https://ashioyajotham.substack.com/p/hallucinations-in-large-language)
+* Quick notes and bookmarks: short markdown files capturing observations.
+* Notebooks: experimental trails and reproducible steps (look under `Finetuning/`, `Embeddings/`, `LangChain/`).
+* Scripts and demos: small utilities used to test or reproduce ideas.
 
-3)Interpretability
+## Practicalities
 
-    -[Open Problems in Mechanistic Interpretability](https://arxiv.org/abs/2501.16496)
-
-4)Scaling Laws
-    -[Scaling Laws for Neural Language Models](https://arxiv.org/abs/2001.083613)
-
-5)In-context learning
-
-   -[In-Context Learning and Induction Heads](https://transformer-circuits.pub/2022/in-context-learning-and-induction-heads/index.html)
-
-6)World Models
-
-   -[Learning to Simulate Dynamic Environments with GameGAN](https://arxiv.org/abs/2005.12126)
-
-   -[World Models](https://worldmodels.github.io/) by David Ha and Jürgen Schmidhuber.
-
-    -[Mastering Atari with Discrete World Models](https://arxiv.org/abs/2010.02193)
-
-    -[V-JEPA: Latent Video Prediction for Visual Representation Learning](https://openreview.net/forum?id=WFYbBOEOtv)
+* License and contributions: personal collection; not open for contributions.
+* Contact and provenance: public profiles and blog links are on my website; use those channels for inquiries.
